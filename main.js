@@ -1,28 +1,44 @@
+// Default variables
+const choices = ['paper', 'rock', 'scissors'];
+let humanScore = 0;
+let computerScore = 0;
+let roundStatus = '';
 
-const options = ['paper', 'rock', 'scissors'];
-
-function computerPlay(){
-    return options[Math.floor(Math.random() * options.length)];
-
-}
-computerPlay();
-
-const playerSelection = prompt('Select (Rock, Paper or Scissors): ').toLowerCase();
-const computerSelection = computerPlay();
-
-console.log(playerSelection);
-console.log(computerSelection);
-
-function round(playerSelection, computerSelection){
-    
+function round(){
+    let computerSelection = choices[Math.floor(Math.random() * choices.length)]; // Randomeize choices array and store result
+    let playerSelection = prompt('Select (Rock, Paper or Scissors): ').toLowerCase(); // Ask the user for a choice and store the choice
+    // Compare choices store points for each winner and return status of the round
     if(computerSelection === playerSelection){
-        return 'Tie!';
+        roundStatus ='Tie round!';
+        humanScore++;
+        computerScore++;
+        return `${roundStatus} Score: Human ${humanScore} - Computer: ${computerScore}`;
     }
     else if((computerSelection === 'rock' && playerSelection === 'scissors') || 
     (computerSelection === 'scissors' && playerSelection === 'paper') || (computerSelection === 'paper' && playerSelection === 'rock')){
-        return 'Computer Win!';
+        roundStatus ='Computer win this round!';
+        computerScore++;
+        return `${roundStatus} Score: Human ${humanScore} - Computer: ${computerScore}`;
     }else{
-        return 'Human Win!';
+        roundStatus = "Human win this round!";
+        humanScore++;
+        return `${roundStatus} Score: Human ${humanScore} - Computer: ${computerScore}`;
     }
 }
-console.log(round(playerSelection, computerSelection));
+
+function game(){
+    for(let i = 0; i <= 5; i++){ // Call function round() 5 times and print status of each round
+        console.log(round());
+    }
+    // Game end result
+    if(humanScore < computerScore){
+        return 'Computer win!'
+    }
+    else if(humanScore === computerScore){
+        return 'Tie!'
+    }else if(humanScore > computerScore){
+        return 'Human win!'
+    }
+}
+console.log(game());
+
