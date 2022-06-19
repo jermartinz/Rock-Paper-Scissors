@@ -5,24 +5,24 @@ let computerScore = 0;
 let roundStatus = '';
 
 function round(){
-    let computerSelection = choices[Math.floor(Math.random() * choices.length)]; // Randomeize choices array and store result
+    let computerSelection = choices[Math.floor(Math.random() * choices.length)]; // Randomize choices array and store result
     let playerSelection = prompt('Select (Rock, Paper or Scissors): ').toLowerCase(); // Ask the user for a choice and store the choice
     // Compare choices store points for each winner and return status of the round
     if(computerSelection === playerSelection){
         roundStatus ='Tie round!';
         humanScore++;
         computerScore++;
-        return `${roundStatus} Score: Human ${humanScore} - Computer: ${computerScore}`;
+        return `Computer select: ${computerSelection}. Human select: ${playerSelection}. ${roundStatus} Score: Human ${humanScore} - Computer: ${computerScore}`;
     }
     else if((computerSelection === 'rock' && playerSelection === 'scissors') || 
     (computerSelection === 'scissors' && playerSelection === 'paper') || (computerSelection === 'paper' && playerSelection === 'rock')){
         roundStatus ='Computer win this round!';
         computerScore++;
-        return `${roundStatus} Score: Human ${humanScore} - Computer: ${computerScore}`;
+        return `Computer select: ${computerSelection}. Human select: ${playerSelection}. ${roundStatus} Score: Human ${humanScore} - Computer: ${computerScore}`;
     }else{
         roundStatus = "Human win this round!";
         humanScore++;
-        return `${roundStatus} Score: Human ${humanScore} - Computer: ${computerScore}`;
+        return `Computer select: ${computerSelection}. Human select: ${playerSelection}. ${roundStatus} Score: Human ${humanScore} - Computer: ${computerScore}`;
     }
 }
 
